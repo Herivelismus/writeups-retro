@@ -97,7 +97,7 @@ Et à la troisième boucle on a de nouveau **eax = 0x61616161** ! Hypothèse val
 
 Le flag ne va pas faire 8 caractères donc notre `buffer` est un fait chiffré en quelque sorte et on va le déchiffrer à coups de xor avec le bon mot de passe. Ce `buffer` une fois déchiffré va être executé par la fonction `check_key`, et notre flag sera sûrement affiché.
 
-## Etape 3: Trouver le mot de passekey 
+## Etape 3: Trouver le mot de passe
 On va se servir de la propiété suivant dans N: **a ^ b = x ⇔ a = x ^ b**
 
 Si on met n'importe quoi comme mot de passe le programme nous renvoie une erreur en nous disant qu'il n'a pas réussi à appelé `check_key`, or `check_key` cherche le caractère `0x01` puis `0x09` car "check_key" contient neuf caractère puis  `63 68 65 63 6B 5F 6B 65 79`, sa représentation ASCII.
