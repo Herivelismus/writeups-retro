@@ -4,7 +4,7 @@ Lien : https://github.com/HackademINT/404CTF-2023/tree/main/RetroIngenierie/deco
 
 Pour comprendre le set d'instructions virtuelles, nous avons ouvert notre exécutable dans un désassembleur, en utilisant IDA.
 
-Dans la fonction `entry`, nous avons repéré une adresse intéressante à `0x1440`. Le mode graphique d'IDA suggère clairement que cette fonction est l'équivalent d'une instruction `switch` en C. Pour chaque code, une fonction unique est appelée, constituant ainsi notre ensemble d'instructions virtuelles.
+Dans la fonction `entry`, on suit le programme et on repére une adresse intéressante à `0x1440`. Le mode graphique d'IDA suggère clairement que cette fonction est l'équivalent d'une instruction `switch` en C. Pour chaque code, une fonction unique est appelée, constituant ainsi notre ensemble d'instructions virtuelles.
 
 #### Cas 0x28 :
 Si l'instruction est `0x28`, alors `FUN_001019cf()` est appelée. Ensuite, quelques opérations sont effectuées, de la mémoire est allouée, puis `FUN_0010208c()` est appelée.
