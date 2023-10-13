@@ -39,7 +39,7 @@ Si on s'intéresse au code assembleur virtuelle maintenant qu'on peut le compren
 
 ## Etape 2: récupérer du code assembleur
 Après ce push il reste des instructions.
-Deux possibilités s'offrent à nous, soit créer un script python pour désassembler notre code d'instruction virtuelle à l'aide d'une pile, soit tricher au débuggeur pour comprendre ce qui ce passe; ou alors faire un peu des deux.
+Deux possibilités s'offrent à nous, soit créer un script python pour désassembler notre code d'instructions virtuellse à l'aide d'une pile, soit de tricher au débuggeur pour comprendre ce qui ce passe; ou alors faire un peu des deux.
 
 @luca à fait un excellent travail et son programme nous renvoie:
 
