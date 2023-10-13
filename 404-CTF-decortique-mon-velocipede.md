@@ -22,7 +22,7 @@ Voici un récapitulatif partiel du set d'instructions virtuelles :
 | 0x21      | jump      |      | 0x2f      | fopen     |
 | 0x23      | mov_const |      | 0x3a      | mov       | 
 | 0x24      | puts      |      | 0x3c      | pop       |
-| 0x25      | getline   |      | 0x3xe     | push      |
+| 0x25      | getline   |      | 0x3e     | push      |
 | 0x26      | and       |      | 0x2b      | add       |
 | 0x28      | call      |      | 0x2d      | sub       | 
 | 0x29      | ret       |      | 0x2e      | exit      |
