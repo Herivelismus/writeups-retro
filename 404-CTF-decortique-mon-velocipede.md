@@ -86,7 +86,7 @@ Tout laisse penser qu'une adresse correspond au mot de passe `mdp` et l'autre au
 
 Or evidemment que tout le `buffer` va être utile donc on va possiblement boucler sur les 8 premiers caractères de `mdp`.
 
-Allons à la fonction `xor` virtuelle et ajoutons un breakpoint juste avant le l'instruction réelle xor qui va comparer le registre `eax` au registre `edx`
+Allons à la fonction `xor` virtuelle et ajoutons un breakpoint juste avant l'instruction réelle xor qui va comparer le registre `eax` au registre `edx`
 On rentre **aaaabbbbcccc** en mot de passe:
 
 On a **eax = 0x61616161** ce qui correspond en ASCII à **aaaa** et **edx = 11213D63** ce qui correspond aux 4 premiers octets push. (en little-endian c'est à l'envers)
