@@ -100,7 +100,7 @@ Le flag ne va pas faire 8 caractères donc notre `buffer` est un fait chiffré e
 ## Etape 3: Trouver le mot de passe
 On va se servir de la propiété suivant dans N: **a ^ b = x ⇔ a = x ^ b**
 
-Si on met n'importe quoi comme mot de passe le programme nous renvoie une erreur en nous disant qu'il n'a pas réussi à appelé `check_key`, or `check_key` cherche le caractère `0x01` puis `0x09` car "check_key" contient neuf caractère puis  `63 68 65 63 6B 5F 6B 65 79`, sa représentation ASCII.
+Si on met n'importe quoi comme mot de passe le programme nous renvoie une erreur en nous disant qu'il n'a pas réussi à appelé `check_key`, or `check_key` cherche le caractère `0x01` puis `0x09` car "check_key" contient neuf caractères puis  `63 68 65 63 6B 5F 6B 65 79`, sa représentation ASCII.
 
 On veut donc générer le chaine de caractère `01 09 63 68 65 63 6B 5F`
 
