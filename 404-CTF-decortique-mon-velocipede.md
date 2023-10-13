@@ -11,7 +11,7 @@ Si l'instruction est `0x28`, alors `FUN_001019cf()` est appelée. Ensuite, quelq
 
 Cette fonction recherche l'octet `0x01`, puis récupère n octets suivant pour les comparer à une chaîne de caractères donnée en entrée. Si ces deux chaînes sont égales et que le caractère `0x02` suit, le registre `rsp_virtuelle`, en réalité une adresse dans la pile, est incrémenté.
 
-En ouvrant le fichier .vmr, nous avons observé que le fichier commence par `main |`, qui en représentation ASCII est `01 04 6D 61 69 6E 02`, confirmant ainsi notre analyse.
+En ouvrant le fichier .vmr, non observe que le fichier commence par `main |`, qui en représentation ASCII est `01 04 6D 61 69 6E 02`, confirmant ainsi notre analyse.
 
 Les autres fonctions telles que `push` et `pop` fonctionnent de manière similaire en effectuant des opérations avec les registres virtuels.
 
