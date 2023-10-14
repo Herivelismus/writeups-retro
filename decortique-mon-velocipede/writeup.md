@@ -2,14 +2,14 @@
 Lien : https://github.com/HackademINT/404CTF-2023/tree/main/RetroIngenierie/decortique-mon-velocipede
 ## Étape 1: Comprendre le set d'instructions
 
-Pour comprendre le set d'instructions virtuelles, nous avons ouvert notre exécutable dans un désassembleur, en utilisant IDA.
+Pour comprendre le set d'instructions virtuelles, on ouvre notre exécutable dans un désassembleur, en utilisant IDA.
 
 Dans la fonction `entry`, on suit le programme et on repère une adresse intéressante à `0x1440`. Le mode graphique d'IDA suggère clairement que cette fonction est l'équivalent d'un `switch` en C. Pour chaque code, une fonction unique est appelée, constituant ainsi notre ensemble d'instructions virtuelles.
 
 #### Cas 0x28 :
 Si l'instruction est `0x28`, alors `FUN_001019cf()` est appelée. Ensuite, quelques opérations sont effectuées, de la mémoire est allouée, puis `FUN_0010208c()` est appelée.
 
-Cette fonction recherche l'octet `0x01`, puis récupère n octets suivant pour les comparer à une chaîne de caractères donnée en entrée. Si ces deux chaînes sont égales et que le caractère `0x02` suit, le registre `rsp_virtuelle`, en réalité une adresse dans la pile, est incrémenté.
+Cette fonction recherche l'octet `0x01`, puis récupère les n octets suivant pour les comparer à une chaîne de caractères donnée en entrée. Si ces deux chaînes sont égales et que le caractère `0x02` suit, le registre `rsp_virtuelle`, en réalité une adresse dans la pile, est incrémenté.
 
 En ouvrant le fichier .vmr, non observe que le fichier commence par `main |`, qui en représentation ASCII est `01 04 6D 61 69 6E 02`, confirmant ainsi notre analyse.
 
@@ -32,14 +32,14 @@ Voici un récapitulatif partiel du set d'instructions virtuelles :
 Après une analyse similaire à celle de `call` on comprend que `push_n_bytes` prend en entrée une adresse et un entier `n` et va push n octects à partir de cette adresse.
 
 
-Si on s'intéresse au code assembleur virtuelle maintenant qu'on peut le comprendre on voit que 176 octects vont être push, en effet on peut lire:
+Si on s'intéresse au code assembleur virtuelle maintenant qu'on peut le comprendre, on voit que 176 octects vont être push, en effet on peut lire:
 
 `7C B0 00 00 00 63 3D 21 11 ...`
 
 
 ## Etape 2: récupérer du code assembleur
 Après ce push il reste des instructions.
-Deux possibilités s'offrent à nous, soit créer un script python pour désassembler notre code d'instructions virtuellse à l'aide d'une pile, soit de tricher au débuggeur pour comprendre ce qui ce passe; ou alors faire un peu des deux.
+Deux possibilités s'offrent à nous, soit créer un script python pour désassembler notre code d'instructions virtuelles à l'aide d'une pile, soit de tricher au débuggeur pour comprendre ce qui ce passe; ou alors faire un peu des deux.
 
 @luca à fait un excellent travail et son programme nous renvoie:
 
@@ -72,7 +72,7 @@ adresse1
 adresse2
 Tant que i<44:
 	x <- prendre 4 octets à partir de adresse1
-	y <- pop 4 octets à partir de adresse2
+	y <- prendre 4 octets à partir de adresse2
 	r <- x xor y
 	push r
 	adresse2 <- adresse2 + offset de 4
@@ -95,7 +95,7 @@ A la deuxième boucle on a **eax = 0x62626262** ce qui correspond à **bbbb**
 
 Et à la troisième boucle on a de nouveau **eax = 0x61616161** ! Hypothèse validée; seuls les 8 premiers caractères du mot de passe comptent.
 
-Le flag ne va pas faire 8 caractères donc notre `buffer` est un fait chiffré en quelque sorte et on va le déchiffrer à coups de xor avec le bon mot de passe. Ce `buffer` une fois déchiffré va être executé par la fonction `check_key`, et notre flag sera sûrement affiché.
+Le flag ne va pas faire 8 caractères donc notre `buffer` est en fait chiffré en quelque sorte et on va le déchiffrer à coups de xor avec le bon mot de passe. Ce `buffer` une fois déchiffré va être executé par la fonction `check_key`, et notre flag sera sûrement affiché.
 
 ## Etape 3: Trouver le mot de passe
 On va se servir de la propriété suivante dans N: **a ^ b = x ⇔ a = x ^ b**
