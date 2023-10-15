@@ -76,7 +76,7 @@ Tant que i<44:
 	r <- x xor y
 	push r
 	adresse2 <- adresse2 + offset de 4
-	adresse1 <- adresse2 + offset de (4 % 8) // car le and joue le rôle de modulo
+	adresse1 <- adresse1 + offset de (4 % 8) // car le and joue le rôle de modulo
 	i <- i + 1
 Fin
 Appeler check_key  	
